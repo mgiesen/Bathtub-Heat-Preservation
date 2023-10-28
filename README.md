@@ -36,8 +36,10 @@ Durch das Abkühlen des gesammelten Duschwassers übertragen wir eine Wärmeener
 
 Inwieweit hier von einer Einzelperson tatsächlich Geld durch das beschriebene Experiment gespart werden kann, müsste genauer geprüft werden. Dennoch ist das Thema nicht neu und nennt sich [Abwasserwärmerückgewinnung](https://de.wikipedia.org/wiki/Abwasserwärmerückgewinnung). So lässt sich aus dem Abwasser mehrerer Häuser oder Wohnblöcke Wärmeenergie zurückgewinnen.
 
-Persönlich halte ich dies für einen sehr wichtigen Ansatz. Das Gedankenexperiment zeigt, dass Lösungen nicht immer kostenintensiv sein müssen. Wenn wir nicht in Euro, sondern in CO2-Äquivalenten von 500 g pro kWh denken, spart das Einstecken des Stöpsels 1,5 kg CO2 pro Duschgang ein. Wenn dieser Beitrag auch nur drei Personen dazu bringt, es auszuprobieren, könnten wir jährlich einige Tonnen CO2 einsparen.
+Persönlich halte ich dies für einen sehr wichtigen Ansatz. Das Gedankenexperiment zeigt, dass Lösungen nicht immer kostenintensiv sein müssen. Wenn wir nicht in Euro, sondern in CO2-Äquivalenten von 500 g pro kWh denken, spart das Einstecken des Stöpsels 1,5 kg CO2 pro Duschgang ein.
 
-Damit möchte ich betonen, dass es in Deutschland 🇩🇪 unsere Aufgabe sein sollte, den Klimawandel nicht durch nationale Verbote, sondern auch durch kostengünstige und umweltfreundliche Technologien zu bekämpfen. Beispielsweise sollten wir versuchen, Alt-Plastik zu einem wertvollen Rohstoff zu machen, sodass Menschen weltweit Anreize haben, es zu sammeln und zu recyceln.
+Ich denke, dass es in Deutschland 🇩🇪 unsere Aufgabe sein sollte, den Klimawandel nicht durch nationale Verbote, sondern durch kostengünstige und umweltfreundliche Technologien zu bekämpfen. Beispielsweise sollten wir versuchen, Alt-Plastik zu einem Wertstoff zu machen, sodass Menschen weltweit Anreize sehen, diesen zu sammeln und zu recyceln.
 
-Ein weiteres Beispiel ist die Solarzelle. Mit Gestehungskosten von nur 3 Cent pro kWh verbreitet sich diese Technologie auch in Ländern, in denen Umweltschutz keine Priorität hat. Diese einfache Lösung sollten wir fördern.
+Ein weiteres Beispiel ist die Solarzelle. Mit Gestehungskosten von mitlerweile nur 3 Cent pro kWh verbreitet sich diese Technologie auch in Ländern, in denen Umweltschutz keine Priorität hat.
+
+Technologie, die günstiger in der Anschaffung/ Nutzung ist als der umweltschädliche Status Quo == Welteweite Adaption 🌎🕊️
