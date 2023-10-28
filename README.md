@@ -2,7 +2,7 @@
 
 Glaubt ihr, dass eure Familie jährlich ca. 160 € sparen kann, indem ihr euren Badewannen-Stöpsel vor dem Duschen einsteckt? Klingt wild, oder? Lasst uns gerne über diesen Gedanken diskutieren.
 
-Neulich beim Duschen habe ich mich gefragt, wie viel Wärmeenergie eigentlich über das Wasser zwischen meinen Füßen im Abfluss verschwindet und unnötigerweise das Abwassersystem erwärmt. Könnt man den Nutzen des warmen Wassers nicht weiter erhöhen?
+Neulich beim Duschen habe ich mich gefragt, wie viel Wärmeenergie eigentlich über das Wasser zwischen meinen Füßen im Abfluss verschwindet und unnötigerweise das Abwassersystem erwärmt. Könnte man den Nutzen des warmen Wassers nicht weiter erhöhen?
 
 Lasst uns ein Gedankenexperiment durchführen: Stellen wir uns vor, ihr schließt vor dem Duschen den Badewannenstöpsel und lasst das Wasser erst dann ab, wenn es vollständig abgekühlt ist. Das wäre natürlich nur im Winter vorteilhaft, aber die Abkühlung erfolgt immerhin durch einen Wärmeübertrag an die Umgebung, sprich das Badezimmer und die umliegenden Räume. Demnach heizt das Duschwasser zusätzlich die Raumluft.
 
