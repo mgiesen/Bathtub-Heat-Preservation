@@ -20,13 +20,13 @@ Lasst uns ein Gedankenexperiment durchführen: Stellen wir uns vor, ihr schließ
 ## Berechnung zur besseren Nachvollziehbarkeit:
 
 1. Energiemenge:
-   $$Q = m \times c \times ΔT = 150 \text{ kg} × 4.186 \text{ kJ/kg°C} × 17°C = 10656.2 \text{ kJ}$$
+   $$Q = m \times c \times ΔT = 150 \, \text{kg} \times 4.186 \, \text{kJ/kg°C} \times 17°C = 10.656,2 \, \text{kJ}$$
 
 2. Umrechnung in kWh:
-   $$E_{kWh} = 10656.2 \text{ kJ} × 10^-6 = 2.9679 \text{ kWh}$$
+   $$E_{kWh} = 10.656,2 \, \text{kJ} \times 10^{-6} = 2,9679 \, \text{kWh}$$
 
 3. Kostenberechnung:
-   $$Kosten = 2.9679 \text{ kWh} × 0,11 €/kWh = 0,33 €$$
+   $$Kosten = 2,9679 \, \text{kWh} \times \frac{0,11 €}{\text{kWh}}$$
 
 ## Ergebnis
 
