@@ -1,12 +1,10 @@
-## Sparen durch Auffangen des Duschwassers
+# Sparen durch Auffangen des Duschwassers
 
-Glaubt ihr, dass eure Familie jährlich ca. 160 € sparen kann, indem ihr euren Badewannen-Stöpsel vor dem Duschen einsteckt? Klingt wild, oder? Lasst uns gerne über diesen Gedanken diskutieren.
+Glaubt ihr, dass eure Familie jährlich ca. 160 € einsparen kann, indem ihr euren Badewannen-Stöpsel vor dem Duschen einsteckt? Klingt wild, oder? Ich möchte die Aussage mit diesem Text etwas genauer untersuchen.
 
 Neulich beim Duschen habe ich mich gefragt, wie viel Wärmeenergie eigentlich über das Wasser zwischen meinen Füßen im Abfluss verschwindet und unnötigerweise das Abwassersystem erwärmt. Könnte man den Nutzen des warmen Wassers nicht weiter erhöhen?
 
-Lasst uns ein Gedankenexperiment durchführen: Stellen wir uns vor, ihr schließt vor dem Duschen den Badewannenstöpsel und lasst das Wasser erst dann ab, wenn es vollständig abgekühlt ist. Das wäre natürlich nur im Winter vorteilhaft, aber die Abkühlung erfolgt immerhin durch einen Wärmeübertrag an die Umgebung, sprich das Badezimmer und die umliegenden Räume. Demnach heizt das Duschwasser zusätzlich die Raumluft.
-
-![Titel](images/titelbild.webp)
+Stellen wir uns vor, ihr schließt vor dem Duschen den Badewannenstöpsel und lasst das Wasser erst dann ab, wenn es vollständig abgekühlt ist. Das wäre natürlich nur im Winter vorteilhaft, aber die Abkühlung erfolgt immerhin durch einen Wärmeübertrag an die Umgebung. Demnach heizt das Duschwasser zusätzlich die Raumluft, wodurch Heizkosten gesenkt werden können. Schauen wir uns hierzu eine Überschlagsrechnung an.
 
 ## Annahmen
 
@@ -17,7 +15,7 @@ Lasst uns ein Gedankenexperiment durchführen: Stellen wir uns vor, ihr schließ
 - Vernachlässigung von Verdunstungseffekten
 - Keine Berücksichtigung der Isolationssituation
 
-## Berechnung zur besseren Nachvollziehbarkeit:
+## Überschlagsrechnung:
 
 1. Energiemenge:
    $$Q = m \times c \times ΔT = 150 \text{ kg} \times 4.186 \text{ kJ/kg°C} \times 17 \text{ °C} = 10.656,2 \text{ kJ}$$
@@ -30,16 +28,36 @@ Lasst uns ein Gedankenexperiment durchführen: Stellen wir uns vor, ihr schließ
 
 ## Ergebnis
 
-Durch das Abkühlen des gesammelten Duschwassers übertragen wir eine Wärmeenergie von ca. 10.000 kJ an die Wohnung, was 3 kWh entspricht. Demnach ließe sich in der kalten Jahreszeit etwa 33 Cent Heizkosten einsparen. Wenn wir von einem 4-Personenhaushalt und täglichem Duschen ausgehen, wären das bereits täglich 1,32 €. Statistisch betrachtet heizen die meisten Menschen zwischen Oktober und April. Angenommen, ihr duscht an 6 Monaten jeweils 20 Tage, da ihr nicht zwangsweise jeden Tag und nicht ausschließlich zu Hause duscht, sprechen wir von 120 Tagen und entsprechend 158,40 €.
+Durch das Abkühlen des gesammelten Duschwassers übertragen wir demnach eine Wärmeenergie von ca. 10.000 kJ an unsere Wohnung, was 3 kWh entspricht. Demnach ließen sich in der kalten Jahreszeit potentiell 0,33 € Heizkosten je Duschgang einsparen. Statistisch betrachtet heizen die meisten Menschen zwischen Oktober und April. Angenommen ein vier Personenhaushalt duscht in der Zeitspanne jeweils 20 Tage pro Monat entspricht dies einer potentiellen Einsparung von 158,40 €.
+
+## Abkühldauer und Luftfeuchtigkeit
+
+Für eine gewisse Praxistauglichkeit stellt sich mir noch die Frage in welcher Zeit das Duschwasser abkühlt und welchen Einfluss das Speichern des Duschwassers auf die Raumluftfeuchte hat. Das ist nicht ganz leicht zu beantworten, da vorraussichtlich bereits das eigentliche Duschen zu einer signifikaten Steigerung der Raumluftfeuchte führt. Ferner ist die rechnerische Ermittlung der Abkühldauer mangels präzisem k-Faktor zu ungenau, weswegen ich ein Experiment zur Beantwortung der Frage durchgeführt habe.
+
+## Experiment
+
+Um die Veränderung von Wasser-/Lufttemperatur und Raumluftfeuchte über der Zeit zu Messen, verwenden wir zwei baugleiche PT100 Elemente und einen DHT22. Die absolute Messgenauigkeit der Sensoren kann vernachlässt werden, da für das Experiment primär die relative Änderungen von Bedeutung ist. Die Wasser- und Lufttemperatur messen wir über die beiden PT100 Elemente und die Luftfeuchte über den DHT22. Als Schnittstelle zwischen Sensoren und Computer nutze ich einen ESP32, da dieser über 12-bit AD Wandler verfügt. Die Auswirkung der Aufstauung wird über die Differenzbetrachtung zweier Versuche untersucht. Ein Versuch für den typischen Duschvorgang und ein Versuch mit Wasseranstauung. Die Messung läuft so lange, bis die Messwerte der Ausgangssituation vor dem Duschen entsprechen. Die zwei Versuche werden an unterschiedlichen Tagen durchgeführt um sicherzustellen, dass die Wände ihre normalen Temperatur- und Feuchtigkeitswerte erreicht haben.
+
+### Versuchsaufbau
+
+- Mischbatterie auf maximalen Volumenstrom und maximaler Temperatur eingestellt
+- PT100 zur Wassertemperaturbestimmung in Badewanne in kleinem Kunststoffgefäß zum anstauen des Wassers beim regulären Duschen
+- PT100 zur Raumtemperaturbestimmung massearm an stativ in Raummitte
+- DHT22 ebenfalls in Raummitte
+- Vergleichbare Außen-/ und Umgebungstemperatur sowie Luftfeuchte bei beiden Versuchen
+
+### Messfehler
+
+Das Experiment wird in einem innenliegendes Badezimmer mit aktiver Lüftung durchgeführt. Das bedeutet, dass ich die durch den Duschvorgang entstandene Luftfeuchtigkeit nicht durch ein Stoßlüften abbauen kann. Hierdurch wird der Einfluss des aufgestauten Wassers auf die Gesamtluftfeuchte innerhalb der Messauflösung vermutlich schwer zu beurteilen. Des Weiteren handelt es sich nicht um ein wissenschaftliches Experiment mit reproduzierbaren und präzisen Umgebungsbedingungen. Dies sollte bei der Bewertung der Ergebnisse berücksichtigt werden.
+
+### Ergebnis
+
+Folgt
 
 ## Fazit und eigene Meinung
 
-Inwieweit hier von einer Einzelperson tatsächlich Geld durch das beschriebene Experiment gespart werden kann, müsste genauer geprüft werden. Dennoch ist das Thema nicht neu und nennt sich [Abwasserwärmerückgewinnung](https://de.wikipedia.org/wiki/Abwasserwärmerückgewinnung). So lässt sich aus dem Abwasser mehrerer Häuser oder Wohnblöcke Wärmeenergie zurückgewinnen.
+Folgt
 
-Persönlich halte ich dies für einen sehr wichtigen Ansatz. Das Gedankenexperiment zeigt, dass Lösungen nicht immer kostenintensiv sein müssen. Wenn wir nicht in Euro, sondern in CO2-Äquivalenten von 500 g pro kWh denken, spart das Einstecken des Stöpsels 1,5 kg CO2 pro Duschgang ein.
+## Social Media Bild
 
-Ich denke, dass es in Deutschland 🇩🇪 unsere Aufgabe sein sollte, den Klimawandel nicht durch nationale Verbote, sondern durch kostengünstige und umweltfreundliche Technologien zu bekämpfen. Beispielsweise sollten wir versuchen, Alt-Plastik zu einem Wertstoff zu machen, sodass Menschen weltweit Anreize sehen, diesen zu sammeln und zu recyceln.
-
-Ein weiteres Beispiel ist die Solarzelle. Mit Gestehungskosten von mitlerweile nur 3 Cent pro kWh verbreitet sich diese Technologie auch in Ländern, in denen Umweltschutz keine Priorität hat.
-
-Technologie, die günstiger in der Anschaffung/ Nutzung ist als der umweltschädliche Status Quo == Welteweite Adaption 🌎🕊️
+![Titel](images/titelbild.webp)
