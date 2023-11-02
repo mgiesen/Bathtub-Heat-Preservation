@@ -1,30 +1,54 @@
-const SerialPort = require('serialport');
+const { SerialPort } = require('serialport');
+const { ReadlineParser } = require('@serialport/parser-readline');
+
 const createCsvWriter = require('csv-writer').createObjectCsvWriter;
 
-// Konfiguriere CSV-Writer
+const experiment_1 = false;
+
+// CSV-Writer
 const csvWriter = createCsvWriter({
-    path: 'data.csv',
-    header: ['Zeit', 'temp_water', 'temp_air', 'temp_air_dht', 'hum_dht']
+    path: './data/' + (experiment_1 ? 'measurement_shower' : 'measurement_impound') + '.csv',
+    header: [
+        { id: 'Zeit', title: 'Zeitstempel' },
+        { id: 'temp_water', title: 'Wassertemperatur' },
+        { id: 'temp_air', title: 'Lufttemperatur' },
+        { id: 'hum_dht', title: 'Luftfeuchtigkeit' }
+    ]
 });
 
-// Port und Baudrate ändern
-const port = new SerialPort('/dev/ttyACM0', { baudRate: 9600 });
+// Port und Baudrate
+const portPath = '/dev/tty.usbserial-22310';
+const serialPort = new SerialPort({ path: portPath, baudRate: 9600 });
+const parser = serialPort.pipe(new ReadlineParser());
 
-port.on('data', (data) =>
+serialPort.on("open", function ()
 {
-    const strData = data.toString();
-    const [temp1, temp2, temp3, humid] = strData.split(';');
+    console.log('Serieller Port geöffnet');
 
-    // Überprüfen, ob Daten gültig sind
-    if (!isNaN(temp1) && !isNaN(temp2) && !isNaN(temp3) && !isNaN(humid))
+    serialPort.on('error', (err) =>
     {
-        const time = new Date().toISOString();
+        console.error(`Fehler: ${err.message}`);
+    });
 
-        // In CSV-Datei schreiben
-        csvWriter.writeRecords([{ temp_water: time, temp_water: temp1, temp_air: temp2, temp_air_dht: temp3, hum_dht: humid }])
-            .then(() =>
-            {
-                console.log('Daten geschrieben.');
-            });
-    }
+    parser.on("data", function (data)
+    {
+        const strData = data.toString();
+        const [temp1, temp2, humid] = strData.split(';');
+
+        // Überprüfen, ob Daten gültig sind
+        if (!isNaN(temp1) && !isNaN(temp2) && !isNaN(humid))
+        {
+            const time = new Date().toISOString();
+
+            // In CSV-Datei schreiben
+            csvWriter.writeRecords([{ Zeit: time, temp_water: temp1, temp_air: temp2, hum_dht: humid }])
+                .then(() =>
+                {
+                    console.log('Neue Datenzeile gespeichert');
+                }).catch(err =>
+                {
+                    console.error('Fehler beim Schreiben in die CSV-Datei:', err);
+                });
+        }
+    });
 });

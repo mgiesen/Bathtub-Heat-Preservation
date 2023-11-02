@@ -46,13 +46,17 @@ Um die Veränderung von Wasser-/Lufttemperatur und Raumluftfeuchte über der Zei
 - DHT22 ebenfalls in Raummitte
 - Vergleichbare Außen-/ und Umgebungstemperatur sowie Luftfeuchte bei beiden Versuchen
 
+Folgt...
+![Titel](images/setup.jpg)
+
 ### Messfehler
 
 Das Experiment wird in einem innenliegendes Badezimmer mit aktiver Lüftung durchgeführt. Das bedeutet, dass ich die durch den Duschvorgang entstandene Luftfeuchtigkeit nicht durch ein Stoßlüften abbauen kann. Hierdurch wird der Einfluss des aufgestauten Wassers auf die Gesamtluftfeuchte innerhalb der Messauflösung vermutlich schwer zu beurteilen. Des Weiteren handelt es sich nicht um ein wissenschaftliches Experiment mit reproduzierbaren und präzisen Umgebungsbedingungen. Dies sollte bei der Bewertung der Ergebnisse berücksichtigt werden.
 
 ### Ergebnis
 
-Folgt
+Folgt...
+![Titel](images/data.png)
 
 ## Fazit und eigene Meinung
 

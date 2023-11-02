@@ -13,10 +13,12 @@ DHT dht(DHTPIN, DHTTYPE);
 // Referenzwiderstand PT100 in Ohm
 #define RREF 430.0
 
+// MOCKUP MODE
+#define MOCKUP true
+
 void setup()
 {
-    Serial.begin(115200);
-    analogSetBits(12); // Setze die Auflösung auf 12 Bits
+    Serial.begin(9600);
     dht.begin();
 }
 
@@ -31,30 +33,27 @@ void loop()
 {
     // PT100 Werte lesen und in Temperatur umrechnen
     float rawValue1 = analogRead(PT100_PIN1);
-    float temp1 = calculateTemperature(rawValue1);
+    float temp1 = MOCKUP ? 37 : calculateTemperature(rawValue1);
 
     float rawValue2 = analogRead(PT100_PIN2);
-    float temp2 = calculateTemperature(rawValue2);
+    float temp2 = MOCKUP ? 20 : calculateTemperature(rawValue2);
 
     // DHT22 lesen
-    float temp3 = dht.readTemperature();
-    float humid = dht.readHumidity();
+    float humid = MOCKUP ? 60 : dht.readHumidity();
 
-    // Überprüfen, ob DHT-Werte gültig sind
-    if (isnan(temp3) || isnan(humid))
+    // Daten an Serial Port senden
+    if (isnan(humid) == false || MOCKUP)
     {
-        Serial.println("Fehler beim Lesen des DHT-Sensors");
-    }
-    else
-    {
-        // Daten an Serial Port senden
+
         Serial.print(temp1);
         Serial.print(";");
         Serial.print(temp2);
         Serial.print(";");
-        Serial.print(temp3);
-        Serial.print(";");
         Serial.println(humid);
+    }
+    else
+    {
+        Serial.println("Fehler beim Lesen des DHT-Sensors");
     }
 
     delay(1000); // Pause zwischen den Messungen
