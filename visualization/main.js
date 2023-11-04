@@ -1,31 +1,84 @@
-let liveChart;
+const dataLayout = [
+    { name: 'Wassertemperatur', unit: '°C', color: '#4e79a7', fill: false, yAxisID: 'y-axis-0', show: false },
+    { name: 'Lufttemperatur', unit: '°C', color: '#f28e2b', fill: false, yAxisID: 'y-axis-0', show: false },
+    { name: 'Luftfeuchtigkeit', unit: '%', color: '#76b7b2', fill: false, yAxisID: 'y-axis-1', show: true },
+    { name: 'Referenztemperatur', unit: '°C', color: '#f5e042', fill: false, yAxisID: 'y-axis-0', show: true },
+];
 
-// CSV Datei laden
-async function loadCSVData(url)
+// Einstiegspunkt
+document.addEventListener('DOMContentLoaded', function ()
 {
-    const response = await fetch(url);
-    const data = await response.text();
-    return data;
+    listAndFillMeasurements();
+
+    // Laden und Verarbeiten der CSV-Daten für das erste Diagramm
+    processData('/liveData.csv').then(data =>
+    {
+        liveChart = createChart('liveChart', undefined, {
+            labels: data.labels,
+            datasets: data.datasets,
+        });
+
+        startSSE();
+    });
+});
+
+let liveChart;
+let measurements_loading_placeholder;
+
+// Funktion zum Hinzufügen einer neuen Datenzeile zum Diagramm
+function updateChartWithNewData(newDataLine)
+{
+    csvRowToChartsJSdataset(newDataLine, liveChart.data.datasets, liveChart.data.labels);
+
+    liveChart.update();
 }
 
 // CSV-Daten verarbeiten
-async function processData(filename) 
+function csvRowToChartsJSdataset(csv_row, datasets, labels)
 {
-    const csvData = await loadCSVData(filename);
+    const columns = csv_row.split(';');
+    const timestampString = columns[0];
+
+    var timestamp = new Date(timestampString);
+
+    if (!isNaN(timestamp.getTime())) 
+    {
+        var formattedTime = new Intl.DateTimeFormat('de-DE', { hour: '2-digit', minute: '2-digit', second: '2-digit' }).format(timestamp);
+        labels.push(formattedTime);
+    }
+    else
+    {
+        console.log("Hallo", timestampString);
+        labels.push('?');
+    }
+
+    for (let j = 1; j < columns.length; j++)
+    {
+        const value = parseFloat(columns[j]);
+        datasets[j - 1].data.push(value);
+    }
+}
+
+async function processData(url)
+{
+    const response = await fetch(url);
+
+    // Überprüfen des Statuscodes
+    if (response.status !== 200)
+    {
+        throw new Error(`Request failed with status ${response.status}`);
+    }
+
+    const csvData = await response.text();
+
     const rows = csvData.split('\n');
     const labels = [];
     const datasets = [];
 
-    const columnsInfo = [
-        { name: 'Wassertemperatur', unit: '°C', color: '#4e79a7', fill: false, yAxisID: 'y-axis-0', show: false },
-        { name: 'Lufttemperatur', unit: '°C', color: '#f28e2b', fill: false, yAxisID: 'y-axis-0', show: false },
-        { name: 'Luftfeuchtigkeit', unit: '%', color: '#76b7b2', fill: false, yAxisID: 'y-axis-1', show: true },
-        { name: 'Referenztemperatur', unit: '°C', color: '#f5e042', fill: false, yAxisID: 'y-axis-0', show: true },
-    ];
-
-    for (let i = 0; i < columnsInfo.length; i++) 
+    // Ich nehme an, dass `dataLayout` ein zuvor definierter Array von Objekten ist.
+    for (let i = 0; i < dataLayout.length; i++)
     {
-        const columnInfo = columnsInfo[i];
+        const columnInfo = dataLayout[i];
 
         datasets.push({
             label: `${columnInfo.name} ${columnInfo.unit}`,
@@ -39,33 +92,17 @@ async function processData(filename)
 
     for (let i = 1; i < rows.length; i++)
     {
-        const columns = rows[i].split(';');
-        const timestampString = columns[0];
+        const row_text = rows[i];
 
-        var timestamp = new Date(timestampString);
-
-        if (!isNaN(timestamp.getTime())) 
+        if (row_text != "")
         {
-            var formattedTime = new Intl.DateTimeFormat('de-DE', { hour: '2-digit', minute: '2-digit', second: '2-digit' }).format(timestamp);
-            labels.push(formattedTime);
-        } else
-        {
-            labels.push('?');
-            console.log(timestampString);
-        }
-
-        for (let j = 1; j < columns.length; j++)
-        {
-            const value = parseFloat(columns[j]);
-            if (columnsInfo[j - 1].show)
-            {
-                datasets[j - 1].data.push(value);
-            }
+            csvRowToChartsJSdataset(row_text, datasets, labels);
         }
     }
 
     return { labels, datasets };
 }
+
 
 const chartOptions = {
     responsive: true,
@@ -144,7 +181,6 @@ function createChart(canvasId, title, data)
     });
 }
 
-
 function restartMeasurement() 
 {
     fetch('/restart_measurement', { method: 'GET' })
@@ -152,7 +188,7 @@ function restartMeasurement()
         {
             if (response.ok)
             {
-                updateChart(liveChart, '/live');
+                updateChart(liveChart, '/liveData.csv');
             }
             else
             {
@@ -189,26 +225,12 @@ function saveMeasurement()
             {
                 console.error("Netzwerkfehler:", error);
             });
-    } else
+    }
+    else
     {
         console.log("Das Speichern wurde abgebrochen, kein Dateiname angegeben.");
     }
 }
-
-// Laden und Verarbeiten der CSV-Daten für das erste Diagramm
-processData('/live').then(data =>
-{
-    liveChart = createChart('liveChart', undefined, {
-        labels: data.labels,
-        datasets: data.datasets,
-    });
-
-    setInterval(async () =>
-    {
-        updateChart(liveChart, '/live');
-    }, 1000);
-
-});
 
 // Diagramm mit neuen Daten aktualisieren
 async function updateChart(chart, url)
@@ -238,6 +260,15 @@ function initChart(canvasId, csvFilename)
 
 function listAndFillMeasurements()
 {
+    // Merke die initiale Ladelogik
+    if (!measurements_loading_placeholder)
+    {
+        measurements_loading_placeholder = document.getElementById("measurements").innerHTML;
+    }
+
+    // Setze Ladelogik
+    document.getElementById("measurements").innerHTML = measurements_loading_placeholder;
+
     fetch('/list_measurements?time=' + new Date().getTime())
         .then(response => response.json())
         .then(files =>
@@ -266,7 +297,6 @@ function listAndFillMeasurements()
                 const label = document.createElement('p');
                 label.innerText = "Es existieren noch keine gespeicherten Messungen";
                 measurementsDiv.appendChild(label);
-
             }
 
         })
@@ -276,6 +306,16 @@ function listAndFillMeasurements()
         });
 }
 
-document.addEventListener('DOMContentLoaded', listAndFillMeasurements);
-
-
+function startSSE()
+{
+    const eventSource = new EventSource('/liveStream');
+    eventSource.onmessage = function (event)
+    {
+        updateChartWithNewData(event.data);
+    };
+    eventSource.onerror = function (error)
+    {
+        console.error("SSE Fehler:", error);
+        eventSource.close();
+    };
+}

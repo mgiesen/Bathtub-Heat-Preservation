@@ -7,6 +7,7 @@
     <title>VISU</title>
 
     <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="loading.css">
     
     <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
     <script src="main.js"></script>
@@ -28,7 +29,11 @@
 
         <h1>Gespeicherte Messungen</h1>
         
-        <div id="measurements"></div>
+        <div id="measurements">
+            <div class="lds-wrapper">
+                <div class="lds-spinner"><div></div><div></div><div></div><div></div><div></div><div></div><div></div><div></div><div></div><div></div><div></div><div></div></div>
+            </div>
+        </div>
        
     </main>
 
