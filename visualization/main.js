@@ -1,3 +1,5 @@
+let chart1, chart2;
+
 // CSV Datei laden
 async function loadCSVData(filename)
 {
@@ -15,9 +17,10 @@ async function processData(filename)
     const datasets = [];
 
     const columnsInfo = [
-        { name: 'Wassertemperatur', unit: '°C', color: '#4e79a7', fill: false, yAxisID: 'y-axis-0', show: true },
-        { name: 'Lufttemperatur', unit: '°C', color: '#f28e2b', fill: false, yAxisID: 'y-axis-0', show: true },
+        { name: 'Wassertemperatur', unit: '°C', color: '#4e79a7', fill: false, yAxisID: 'y-axis-0', show: false },
+        { name: 'Lufttemperatur', unit: '°C', color: '#f28e2b', fill: false, yAxisID: 'y-axis-0', show: false },
         { name: 'Luftfeuchtigkeit', unit: '%', color: '#76b7b2', fill: false, yAxisID: 'y-axis-1', show: true },
+        { name: 'Referenztemperatur', unit: '%', color: '#f5e042', fill: false, yAxisID: 'y-axis-1', show: true },
     ];
 
     for (let i = 0; i < columnsInfo.length; i++) 
@@ -36,7 +39,7 @@ async function processData(filename)
 
     for (let i = 1; i < rows.length; i++)
     {
-        const columns = rows[i].split(',');
+        const columns = rows[i].split(';');
         const timestampString = columns[0];
 
         var timestamp = new Date(timestampString);
@@ -66,6 +69,13 @@ async function processData(filename)
 const chartOptions = {
     responsive: true,
     maintainAspectRatio: false,
+    animation: {
+        duration: 0
+    },
+    hover: {
+        animationDuration: 0
+    },
+    responsiveAnimationDuration: 0,
     scales: {
         x: [{
             ticks: {
@@ -103,7 +113,7 @@ const chartOptions = {
                 display: true,
                 text: 'Luftfeuchtigkeit'
             }
-        }
+        },
     },
     plugins: {
         title: {
@@ -131,7 +141,7 @@ function createChart(canvasId, title, data)
 // Laden und Verarbeiten der CSV-Daten für das erste Diagramm
 processData('measurement_shower.csv').then(data =>
 {
-    const chart1 = createChart('chart1', 'Wasser aufgestaut', {
+    chart1 = createChart('chart1', 'Wasser aufgestaut', {
         labels: data.labels,
         datasets: data.datasets,
     });
@@ -140,7 +150,7 @@ processData('measurement_shower.csv').then(data =>
 // Laden und Verarbeiten der CSV-Daten für das zweite Diagramm
 processData('measurement_impound.csv').then(data =>
 {
-    const chart2 = createChart('chart2', 'Normales Duschen', {
+    chart2 = createChart('chart2', 'Normales Duschen', {
         labels: data.labels,
         datasets: data.datasets,
     });

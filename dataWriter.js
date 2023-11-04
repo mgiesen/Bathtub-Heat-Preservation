@@ -1,18 +1,34 @@
 const { SerialPort } = require('serialport');
 const { ReadlineParser } = require('@serialport/parser-readline');
 
-const createCsvWriter = require('csv-writer').createObjectCsvWriter;
+// Pfade
+const measurements_folder = "./measurements";
+const visualization_folder = "./visualization";
 
-const experiment_1 = false;
+// Webserver 
+const express = require('express');
+const app = express();
+
+app.use(express.static(visualization_folder));
+app.use('/data', express.static(measurements_folder));
+
+const server = app.listen(3000, function ()
+{
+    console.log('Webserver läuft. Trending auf Port 3000');
+});
 
 // CSV-Writer
+const createCsvWriter = require('csv-writer').createObjectCsvWriter;
+
 const csvWriter = createCsvWriter({
-    path: './data/' + (experiment_1 ? 'measurement_shower' : 'measurement_impound') + '.csv',
+    fieldDelimiter: ';',
+    path: './measurements/' + (true ? 'measurement_shower' : 'measurement_impound') + '.csv',
     header: [
-        { id: 'Zeit', title: 'Zeitstempel' },
+        { id: 'timestamp', title: 'Zeitstempel' },
         { id: 'temp_water', title: 'Wassertemperatur' },
         { id: 'temp_air', title: 'Lufttemperatur' },
-        { id: 'hum_dht', title: 'Luftfeuchtigkeit' }
+        { id: 'hum_bme', title: 'Luftfeuchtigkeit' },
+        { id: 'temp_air_bme', title: 'Referenztemperatur' }
     ]
 });
 
@@ -33,15 +49,15 @@ serialPort.on("open", function ()
     parser.on("data", function (data)
     {
         const strData = data.toString();
-        const [temp1, temp2, humid] = strData.split(';');
+        const [temp_water, temp_air, hum_bme, temp_air_bme] = strData.split(';');
 
         // Überprüfen, ob Daten gültig sind
-        if (!isNaN(temp1) && !isNaN(temp2) && !isNaN(humid))
+        if (!isNaN(temp_water) && !isNaN(temp_air) && !isNaN(hum_bme) && !isNaN(temp_air_bme))
         {
-            const time = new Date().toISOString();
+            const timestamp = new Date().toISOString();
 
             // In CSV-Datei schreiben
-            csvWriter.writeRecords([{ Zeit: time, temp_water: temp1, temp_air: temp2, hum_dht: humid }])
+            csvWriter.writeRecords([{ timestamp: timestamp, temp_water: temp_water, temp_air: temp_air, hum_bme: hum_bme, temp_air_bme: temp_air_bme }])
                 .then(() =>
                 {
                     console.log('Neue Datenzeile gespeichert');
