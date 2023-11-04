@@ -8,7 +8,7 @@ const express = require('express');
 const measurements_folder = "./measurements";
 const visualization_folder = "./visualization";
 
-const microcontrollerUrl = 'http://192.168.178.128';
+const microcontrollerUrl = 'http://showersensor.local';
 
 // ===========================================================================
 //                             DATENSAMMLUNG
@@ -64,7 +64,7 @@ async function retrieveSensorData()
 }
 
 startWriteStream();
-setInterval(retrieveSensorData, 1500);
+setInterval(retrieveSensorData, 5000);
 
 process.on('SIGINT', () =>
 {
