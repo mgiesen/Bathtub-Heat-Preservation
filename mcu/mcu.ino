@@ -53,6 +53,8 @@ void setup()
         Serial.println("mDNS responder gestartet");
     }
 
+    MDNS.addService("http", "tcp", 80);
+
     server.on("/", HTTP_GET, handleSendSensorData);
     server.begin();
     Serial.println("HTTP Server gestartet");
@@ -61,6 +63,7 @@ void setup()
 void loop()
 {
     server.handleClient();
+    MDNS.update();
 }
 
 void handleSendSensorData()
