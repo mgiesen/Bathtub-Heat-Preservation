@@ -81,12 +81,13 @@ async function processData(url)
         const columnInfo = dataLayout[i];
 
         datasets.push({
-            label: `${columnInfo.name} ${columnInfo.unit}`,
+            label: `${columnInfo.name}`,
             data: [],
             borderColor: columnInfo.color,
             borderWidth: 2,
             fill: columnInfo.fill,
             yAxisID: columnInfo.yAxisID,
+            pointRadius: 0,
         });
     }
 
@@ -103,7 +104,6 @@ async function processData(url)
     return { labels, datasets };
 }
 
-
 const chartOptions = {
     responsive: true,
     maintainAspectRatio: false,
@@ -114,14 +114,25 @@ const chartOptions = {
         animationDuration: 0
     },
     responsiveAnimationDuration: 0,
+    interaction: {
+        intersect: false,
+        mode: 'index',
+    },
     scales: {
+        x: {
+            ticks: {
+                autoSkip: true,
+                maxTicksLimit: 20
+            }
+        },
         'y-axis-0': {
             position: 'left',
             beginAtZero: false,
             ticks: {
-                callback: function (value, index, ticks)
+                stepSize: 0.5,
+                callback: function (value)
                 {
-                    return value + ' °C';
+                    return value + " °C";
                 }
             },
             title: {
@@ -137,14 +148,14 @@ const chartOptions = {
                 display: false,
             },
             ticks: {
-                callback: function (value, index, ticks)
+                stepSize: 0.5,
+                callback: function (value)
                 {
                     return value + ' %';
                 }
             },
             title: {
-                display: true,
-                text: 'Luftfeuchtigkeit'
+                display: false,
             }
         },
     },
@@ -155,6 +166,7 @@ const chartOptions = {
         },
     },
 };
+
 
 // Diagramm erstellen
 function createChart(canvasId, title, data) 
