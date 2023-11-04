@@ -213,6 +213,28 @@ function restartMeasurement()
         });
 }
 
+function deleteMeasurement(filename) 
+{
+    fetch(`/delete_measurement?filename=${encodeURIComponent(filename)}`, {
+        method: 'GET'
+    })
+        .then(response =>
+        {
+            if (response.ok)
+            {
+                listAndFillMeasurements();
+            }
+            else
+            {
+                console.error("Fehler beim Neustart der Messung:", response);
+            }
+        })
+        .catch(error =>
+        {
+            console.error("Netzwerkfehler:", error);
+        });
+}
+
 function saveMeasurement() 
 {
     const filename = prompt("Bitte Dateinamen eingeben");
@@ -298,7 +320,13 @@ function listAndFillMeasurements()
                     const canvas = document.createElement('canvas');
                     const canvasId = 'chart' + (index + 1);
                     canvas.id = canvasId;
+
+                    const deleteIcon = document.createElement('div');
+                    deleteIcon.className = 'deleteIcon';
+                    deleteIcon.onclick = () => deleteMeasurement(file);
+
                     chartContainer.appendChild(canvas);
+                    chartContainer.appendChild(deleteIcon);
                     measurementsDiv.appendChild(chartContainer);
 
                     initChart(canvasId, file);
@@ -330,4 +358,4 @@ function startSSE()
         console.error("SSE Fehler:", error);
         eventSource.close();
     };
-}
+};

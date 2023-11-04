@@ -33,7 +33,6 @@ function startWriteStream()
         .on('close', () => { isStreamOpen = false; });
 }
 
-// Funktion um neue Daten zu allen Clients zu senden
 function sendToAllClients(data)
 {
     openConnections.forEach(client =>
@@ -42,7 +41,7 @@ function sendToAllClients(data)
     });
 }
 
-async function fetchData()
+async function retrieveSensorData()
 {
     try
     {
@@ -65,7 +64,7 @@ async function fetchData()
 }
 
 startWriteStream();
-setInterval(fetchData, 1000);
+setInterval(retrieveSensorData, 1500);
 
 process.on('SIGINT', () =>
 {
@@ -157,18 +156,40 @@ app.get('/save_measurement', async (req, res) =>
         return res.status(400).send('Ungültiger Dateiname');
     }
 
-    const sourcePath = path.join(__dirname, 'buffer.csv');
     const destinationPath = path.join(measurements_folder, `${decodedFilename}.csv`);
 
     try
     {
-        await fsPromises.copyFile(sourcePath, destinationPath);
+        await fsPromises.copyFile(bufferFilePath, destinationPath);
         res.status(200).send('Messung erfolgreich gespeichert');
     }
     catch (err)
     {
         console.error('Fehler beim Speichern der Datei:', err);
         res.status(500).send('Fehler beim Speichern der Messung');
+    }
+});
+
+app.get('/delete_measurement', async (req, res) =>
+{
+    const { filename } = req.query;
+    const decodedFilename = decodeURIComponent(filename);
+
+    if (!decodedFilename || path.basename(decodedFilename) !== decodedFilename)
+    {
+        return res.status(400).send('Ungültiger Dateiname');
+    }
+
+    const filePath = path.join(measurements_folder, `${decodedFilename}`);
+
+    try
+    {
+        await fsPromises.unlink(filePath);
+        res.status(200).send('Messung erfolgreich gelöscht');
+    } catch (err)
+    {
+        console.error('Fehler beim Löschen der Datei:', err);
+        res.status(500).send('Fehler beim Löschen der Messung');
     }
 });
 
