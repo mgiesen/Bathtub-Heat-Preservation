@@ -1,9 +1,9 @@
-let chart1, chart2;
+let liveChart;
 
 // CSV Datei laden
-async function loadCSVData(filename)
+async function loadCSVData(url)
 {
-    const response = await fetch(`/data/${filename}`);
+    const response = await fetch(url);
     const data = await response.text();
     return data;
 }
@@ -20,7 +20,7 @@ async function processData(filename)
         { name: 'Wassertemperatur', unit: '°C', color: '#4e79a7', fill: false, yAxisID: 'y-axis-0', show: false },
         { name: 'Lufttemperatur', unit: '°C', color: '#f28e2b', fill: false, yAxisID: 'y-axis-0', show: false },
         { name: 'Luftfeuchtigkeit', unit: '%', color: '#76b7b2', fill: false, yAxisID: 'y-axis-1', show: true },
-        { name: 'Referenztemperatur', unit: '%', color: '#f5e042', fill: false, yAxisID: 'y-axis-1', show: true },
+        { name: 'Referenztemperatur', unit: '°C', color: '#f5e042', fill: false, yAxisID: 'y-axis-0', show: true },
     ];
 
     for (let i = 0; i < columnsInfo.length; i++) 
@@ -51,6 +51,7 @@ async function processData(filename)
         } else
         {
             labels.push('?');
+            console.log(timestampString);
         }
 
         for (let j = 1; j < columns.length; j++)
@@ -77,11 +78,6 @@ const chartOptions = {
     },
     responsiveAnimationDuration: 0,
     scales: {
-        x: [{
-            ticks: {
-                display: false,
-            },
-        }],
         'y-axis-0': {
             position: 'left',
             beginAtZero: false,
@@ -128,30 +124,158 @@ function createChart(canvasId, title, data)
 {
     const ctx = document.getElementById(canvasId).getContext('2d');
 
-    const options = { ...chartOptions };
-    options.plugins.title.text = title;
+    // Erstellen Sie eine tiefe Kopie der chartOptions
+    const options = JSON.parse(JSON.stringify(chartOptions));
+
+    if (title !== undefined)
+    {
+        options.plugins.title.text = title;
+        options.plugins.title.display = true;
+    }
+    else
+    {
+        options.plugins.title.display = false;
+    }
 
     return new Chart(ctx, {
         type: 'line',
-        data,
+        data: data,
         options: options,
     });
 }
 
-// Laden und Verarbeiten der CSV-Daten für das erste Diagramm
-processData('measurement_shower.csv').then(data =>
+
+function restartMeasurement() 
 {
-    chart1 = createChart('chart1', 'Wasser aufgestaut', {
+    fetch('/restart_measurement', { method: 'GET' })
+        .then(response =>
+        {
+            if (response.ok)
+            {
+                updateChart(liveChart, '/live');
+            }
+            else
+            {
+                console.error("Fehler beim Neustart der Messung:", response);
+            }
+        })
+        .catch(error =>
+        {
+            console.error("Netzwerkfehler:", error);
+        });
+}
+
+function saveMeasurement() 
+{
+    const filename = prompt("Bitte Dateinamen eingeben");
+
+    if (filename)
+    {
+        fetch(`/save_measurement?filename=${encodeURIComponent(filename)}`, {
+            method: 'GET'
+        })
+            .then(response =>
+            {
+                if (response.ok)
+                {
+                    listAndFillMeasurements();
+                }
+                else
+                {
+                    console.error("Fehler beim Speichern der Messung.");
+                }
+            })
+            .catch(error =>
+            {
+                console.error("Netzwerkfehler:", error);
+            });
+    } else
+    {
+        console.log("Das Speichern wurde abgebrochen, kein Dateiname angegeben.");
+    }
+}
+
+// Laden und Verarbeiten der CSV-Daten für das erste Diagramm
+processData('/live').then(data =>
+{
+    liveChart = createChart('liveChart', undefined, {
         labels: data.labels,
         datasets: data.datasets,
     });
+
+    setInterval(async () =>
+    {
+        updateChart(liveChart, '/live');
+    }, 1000);
+
 });
 
-// Laden und Verarbeiten der CSV-Daten für das zweite Diagramm
-processData('measurement_impound.csv').then(data =>
+// Diagramm mit neuen Daten aktualisieren
+async function updateChart(chart, url)
 {
-    chart2 = createChart('chart2', 'Normales Duschen', {
-        labels: data.labels,
-        datasets: data.datasets,
+    const newData = await processData(url);
+
+    chart.data.labels = newData.labels;
+    chart.data.datasets.forEach((dataset, i) =>
+    {
+        dataset.data = newData.datasets[i].data;
     });
-});
+    chart.update();
+}
+
+function initChart(canvasId, csvFilename)
+{
+    processData('/data/' + csvFilename).then(data =>
+    {
+        // Dateiname ohne Endung als Titel setzen
+        const title = csvFilename.replace('.csv', '');
+        createChart(canvasId, title, {
+            labels: data.labels,
+            datasets: data.datasets,
+        });
+    });
+}
+
+function listAndFillMeasurements()
+{
+    fetch('/list_measurements?time=' + new Date().getTime())
+        .then(response => response.json())
+        .then(files =>
+        {
+            const measurementsDiv = document.getElementById('measurements');
+            measurementsDiv.innerHTML = '';
+
+            if (files.length > 0)
+            {
+                files.forEach((file, index) =>
+                {
+                    const chartContainer = document.createElement('div');
+                    chartContainer.className = 'chart-container';
+
+                    const canvas = document.createElement('canvas');
+                    const canvasId = 'chart' + (index + 1);
+                    canvas.id = canvasId;
+                    chartContainer.appendChild(canvas);
+                    measurementsDiv.appendChild(chartContainer);
+
+                    initChart(canvasId, file);
+                });
+            }
+            else
+            {
+                const label = document.createElement('p');
+                label.innerText = "Es existieren noch keine gespeicherten Messungen";
+                measurementsDiv.appendChild(label);
+
+            }
+
+        })
+        .catch(error =>
+        {
+            console.error('Fehler beim Abrufen der Messdateiliste:', error);
+        });
+}
+
+document.addEventListener('DOMContentLoaded', listAndFillMeasurements);
+
+

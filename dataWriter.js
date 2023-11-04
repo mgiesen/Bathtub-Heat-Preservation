@@ -1,9 +1,15 @@
+const fs = require('fs').promises;
+const path = require('path');
+
 const { SerialPort } = require('serialport');
 const { ReadlineParser } = require('@serialport/parser-readline');
 
 // Pfade
 const measurements_folder = "./measurements";
 const visualization_folder = "./visualization";
+
+// Live Data
+let liveData = "";
 
 // Webserver 
 const express = require('express');
@@ -12,24 +18,61 @@ const app = express();
 app.use(express.static(visualization_folder));
 app.use('/data', express.static(measurements_folder));
 
-const server = app.listen(3000, function ()
+app.listen(3000, function ()
 {
     console.log('Webserver läuft. Trending auf Port 3000');
 });
 
-// CSV-Writer
-const createCsvWriter = require('csv-writer').createObjectCsvWriter;
+app.get('/live', (req, res) =>
+{
+    res.type('text/csv');
+    res.send(liveData);
+});
 
-const csvWriter = createCsvWriter({
-    fieldDelimiter: ';',
-    path: './measurements/' + (true ? 'measurement_shower' : 'measurement_impound') + '.csv',
-    header: [
-        { id: 'timestamp', title: 'Zeitstempel' },
-        { id: 'temp_water', title: 'Wassertemperatur' },
-        { id: 'temp_air', title: 'Lufttemperatur' },
-        { id: 'hum_bme', title: 'Luftfeuchtigkeit' },
-        { id: 'temp_air_bme', title: 'Referenztemperatur' }
-    ]
+app.get('/restart_measurement', (req, res) =>
+{
+    liveData = "";
+    res.status(200).send();
+});
+
+app.get('/save_measurement', async (req, res) =>
+{
+    const { filename } = req.query;
+    const decodedFilename = decodeURIComponent(filename);
+
+    if (!decodedFilename || path.basename(decodedFilename) !== decodedFilename)
+    {
+        return res.status(400).send('Ungültiger Dateiname');
+    }
+
+    const filePath = path.join(measurements_folder, `${decodedFilename}.csv`);
+
+    try
+    {
+        await fs.writeFile(filePath, liveData);
+        res.status(200).send();
+    } catch (err)
+    {
+        console.error('Fehler beim Speichern der Datei:', err);
+        res.status(500).send('Fehler beim Speichern der Messung');
+    }
+});
+
+
+app.get('/list_measurements', async (req, res) =>
+{
+    try
+    {
+        const directoryPath = path.join(__dirname, 'measurements');
+        const files = await fs.readdir(directoryPath);
+        const csvFiles = files.filter(file => path.extname(file).toLowerCase() === '.csv');
+        res.json(csvFiles);
+    }
+    catch (err)
+    {
+        console.error('Fehler beim Auflisten der Messungen:', err);
+        res.status(500).send('Fehler beim Auflisten der Messungen');
+    }
 });
 
 // Port und Baudrate
@@ -49,22 +92,8 @@ serialPort.on("open", function ()
     parser.on("data", function (data)
     {
         const strData = data.toString();
-        const [temp_water, temp_air, hum_bme, temp_air_bme] = strData.split(';');
+        const timestamp = new Date().toISOString();
 
-        // Überprüfen, ob Daten gültig sind
-        if (!isNaN(temp_water) && !isNaN(temp_air) && !isNaN(hum_bme) && !isNaN(temp_air_bme))
-        {
-            const timestamp = new Date().toISOString();
-
-            // In CSV-Datei schreiben
-            csvWriter.writeRecords([{ timestamp: timestamp, temp_water: temp_water, temp_air: temp_air, hum_bme: hum_bme, temp_air_bme: temp_air_bme }])
-                .then(() =>
-                {
-                    console.log('Neue Datenzeile gespeichert');
-                }).catch(err =>
-                {
-                    console.error('Fehler beim Schreiben in die CSV-Datei:', err);
-                });
-        }
+        liveData += timestamp + ";" + strData + "\n";
     });
 });
