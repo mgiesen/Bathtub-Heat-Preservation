@@ -16,9 +16,16 @@
 <body>
 
     <header>
-        <h1>Aktive Messungen</h1>
-        <button onclick="saveMeasurement()">Speichern</button>
-        <button onclick="restartMeasurement()">Neustarten</button>
+        <h1>EINSTELLUNGEN</h1>
+        <div class="row_element" id="checkbox-container">
+        </div>
+
+        <h1 style="margin-top: 30px;">LIVE MESSUNG</h1>
+        <div class="row_element">
+            <button onclick="saveMeasurement()">Speichern</button>
+            <button onclick="restartMeasurement()">Neustarten</button>
+            
+        </div>
     </header>
 
     <main>
@@ -27,7 +34,7 @@
             <canvas id="liveChart"></canvas>
         </div>
 
-        <h1>Gespeicherte Messungen</h1>
+        <h1>GESPEICHERTE MESSUNGEN</h1>
         
         <div id="measurements">
             <div class="lds-wrapper">

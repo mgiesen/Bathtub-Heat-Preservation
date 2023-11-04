@@ -1,13 +1,49 @@
 const dataLayout = [
-    { name: 'Wassertemperatur', unit: '°C', color: '#4e79a7', fill: false, yAxisID: 'y-axis-0', show: false },
-    { name: 'Lufttemperatur', unit: '°C', color: '#f28e2b', fill: false, yAxisID: 'y-axis-0', show: false },
-    { name: 'Luftfeuchtigkeit', unit: '%', color: '#76b7b2', fill: false, yAxisID: 'y-axis-1', show: true },
-    { name: 'Referenztemperatur', unit: '°C', color: '#f5e042', fill: false, yAxisID: 'y-axis-0', show: true },
+    { name: 'Wassertemperatur', unit: '°C', color: '#4e79a7', fill: false, yAxisID: 'y-axis-0', },
+    { name: 'Lufttemperatur', unit: '°C', color: '#f28e2b', fill: false, yAxisID: 'y-axis-0', },
+    { name: 'Luftfeuchtigkeit', unit: '%', color: '#76b7b2', fill: false, yAxisID: 'y-axis-1', },
+    { name: 'Referenztemperatur', unit: '°C', color: '#f5e042', fill: false, yAxisID: 'y-axis-0', },
 ];
+
+function initializeCheckboxes()
+{
+    const container = document.getElementById('checkbox-container');
+    dataLayout.forEach((item, index) =>
+    {
+        const checkbox = document.createElement('input');
+        const label = document.createElement('label');
+        const span = document.createElement('span');
+
+        checkbox.type = 'checkbox';
+        checkbox.id = 'checkbox' + index;
+        checkbox.checked = true;
+        checkbox.onchange = (e) => toggleDatasetVisibility(index, e.target.checked);
+
+        span.textContent = item.name;
+        span.style.color = item.color;
+
+        label.appendChild(checkbox);
+        label.appendChild(span);
+        container.appendChild(label);
+    });
+}
+
+function toggleDatasetVisibility(index, show)
+{
+    const chart = liveChart;
+    const dataset = chart.data.datasets[index];
+    dataset.hidden = !show;
+    chart.update();
+}
+
 
 // Einstiegspunkt
 document.addEventListener('DOMContentLoaded', function ()
 {
+    //Legende als Checkboxen initialisieren
+    initializeCheckboxes();
+
+    //Datensätze laden
     listAndFillMeasurements();
 
     // Laden und Verarbeiten der CSV-Daten für das erste Diagramm
@@ -164,9 +200,11 @@ const chartOptions = {
             display: true,
             text: '',
         },
+        legend: {
+            display: false
+        }
     },
 };
-
 
 // Diagramm erstellen
 function createChart(canvasId, title, data) 
