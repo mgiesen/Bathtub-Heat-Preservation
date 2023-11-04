@@ -64,7 +64,7 @@ async function retrieveSensorData()
 }
 
 startWriteStream();
-setInterval(retrieveSensorData, 5000);
+setInterval(retrieveSensorData, 2500);
 
 process.on('SIGINT', () =>
 {
