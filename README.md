@@ -32,7 +32,7 @@ Stellen wir uns vor, ihr schließt vor dem Duschen den Badewannenstöpsel und la
 
 ## Ergebnis
 
-Durch das Abkühlen des gesammelten Duschwassers übertragen wir demnach eine Wärmeenergie von ca. 10.000 kJ an unsere Wohnung, was 3 kWh entspricht. Demnach ließen sich in der kalten Jahreszeit potentiell 0,33 € Heizkosten je Duschgang einsparen. Statistisch betrachtet heizen die meisten Menschen zwischen Oktober und April. Angenommen ein vier Personenhaushalt duscht in der Zeitspanne jeweils 20 Tage pro Monat entspricht dies einer potentiellen Einsparung von 158,40 €.
+Durch das Abkühlen des gesammelten Duschwassers übertragen wir rechnerisch eine Wärmeenergie von ca. 3 kWh an die Umgebung. Demnach ließen sich in der kalten Jahreszeit potentiell 0,33 € Heizkosten je Duschgang einsparen. Statistisch betrachtet heizen die meisten Menschen zwischen Oktober und April. Angenommen ein Vierpersonenhaushalt duscht in der Zeitspanne jeweils 20 Tage pro Monat entspricht dies einer potentiellen Einsparung von 158,40 €.
 
 ## Abkühldauer und Luftfeuchtigkeit
 
