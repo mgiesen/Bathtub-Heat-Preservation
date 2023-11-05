@@ -1,6 +1,6 @@
 # Sparen durch Auffangen des Duschwassers
 
-Glaubt ihr, dass eure Familie jährlich ca. 160 € einsparen kann, indem ihr euren Badewannen-Stöpsel vor dem Duschen einsteckt? Klingt wild, oder? Ich möchte die Aussage mit diesem Text etwas genauer untersuchen.
+Glaubt ihr, dass ihr im Winter ca. 60 % eurer Duschkosten einsparen könnt, einfach indem ihr euren Badewannen-Stöpsel vor dem Duschen einsteckt? Klingt wild, oder? Ich möchte die Aussage mit diesem Text etwas genauer untersuchen.
 
 Neulich beim Duschen habe ich mich gefragt, wie viel Wärmeenergie eigentlich über das Wasser zwischen meinen Füßen im Abfluss verschwindet und unnötigerweise das Abwassersystem erwärmt. Könnte man den Nutzen des warmen Wassers nicht weiter erhöhen?
 
@@ -9,22 +9,50 @@ Stellen wir uns vor, ihr schließt vor dem Duschen den Badewannenstöpsel und la
 ## Annahmen
 
 - Menge des Wassers nach 10 Minuten Duschzeit: 150 Liter
-- Wassertemperatur (typische Duschtemperatur): 37°C
-- Raumtemperatur (Endtemperatur des Wassers): 20°C
-- Energiepreis: 11 Cent/kWh
+- Warmwassertemperatur: 37 °C
+- Kaltwassertemperatur 10 °C
+- Raumtemperatur (Endtemperatur des Wassers): 20 °C
+- Energiepreis: 0,11 €/kWh
 - Vernachlässigung von Verdunstungseffekten
 - Keine Berücksichtigung der Isolationssituation
 
 ## Überschlagsrechnung:
 
-1. Energiemenge:
-   $$Q = m \times c \times ΔT = 150 \text{ kg} \times 4.186 \text{ kJ/kg°C} \times 17 \text{ °C} = 10.656,2 \text{ kJ}$$
+1. Benötigte Wärmeenergie für Duschwasser
+
+   \( Q = m \cdot c \cdot \Delta T = 150\, \text{kg} \cdot 4.186\, \text{kJ/kg}^\circ\text{C} \cdot (37^\circ\text{C} - 10^\circ\text{C}) \approx 16.953\, \text{kJ} \)
+
+      <!-- Leerzeile -->
 
 2. Umrechnung in kWh:
-   $$E_{kWh} = 10.656,2 \text{ kJ} \times 10^{-6} = 2,9679 \text{ kWh}$$
 
-3. Kostenberechnung:
-   $$Kosten = 2,9679 \text{ kWh} \times \frac{0,11 €}{\text{ kWh}} = 0,33 \text{ €}$$
+   \( E\_{\text{kWh}} = \frac{16.953\, \text{kJ}}{3.6 \times 10^6} \approx 4.71\, \text{kWh} \)
+
+   <!-- Leerzeile -->
+
+3. Abgabe Wärmeenergie an Umgebung:
+
+   \( Q = m \cdot c \cdot \Delta T = 150\, \text{kg} \cdot 4.186\, \text{kJ/kg}^\circ\text{C} \cdot 17^\circ\text{C} \approx 10.656\, \text{kJ} \)
+
+   <!-- Leerzeile -->
+
+4. Umrechnung in kWh:
+
+   \( E\_{\text{kWh}} = \frac{10.656\, \text{kJ}}{3.6 \times 10^6} \approx 2.97\, \text{kWh} \)
+
+   <!-- Leerzeile -->
+
+5. Berechnung der Einsparung:
+
+   \( \text{Einsparung} = \left( \frac{2.97}{4.71} \right) \times 100 \approx 63\% \)
+
+   <!-- Leerzeile -->
+
+6. Kostenberechnung:
+
+   \( Kosten = 2.97\, \text{kWh} \times \frac{0,11\, €}{\text{kWh}} \approx 0,33\, € \)
+
+   <!-- Leerzeile -->
 
 ## Ergebnis
 
