@@ -12,7 +12,7 @@ Stellen wir uns vor, ihr schließt vor dem Duschen den Badewannenstöpsel und la
 - Warmwassertemperatur: 37 °C
 - Kaltwassertemperatur 10 °C
 - Raumtemperatur (Endtemperatur des Wassers): 20 °C
-- Energiepreis: 0,11 €/kWh
+- Heizkosten: 0,11 €/kWh
 - Vernachlässigung von Verdunstungseffekten
 - Keine Berücksichtigung der Isolationssituation
 
@@ -22,14 +22,13 @@ Stellen wir uns vor, ihr schließt vor dem Duschen den Badewannenstöpsel und la
    $$Q = m \times c \times ΔT = 150 \text{ kg} \times 4186 \text{ J/kg°C} \times (37\text{ °C} - 10\text{ °C}) \approx 16.953 \text{ kJ} \approx 4,71 \text{ kWh}$$
 
 1. Abgabe Wärmeenergie an Umgebung:
-   $$Q = m \times c \times ΔT = 150 \text{ kg} \times 4186 \text{ J/kg°C} \times (37\text{ °C} - 20\text{ °C}) \text{ °C} = 10.674 \text{ kJ} \approx 2,97 \text{ kWh}$$
+   $$Q = m \times c \times ΔT = 150 \text{ kg} \times 4186 \text{ J/kg°C} \times (37\text{ °C} - 20\text{ °C}) \approx 10.674 \text{ kJ} \approx 2,97 \text{ kWh}$$
 
 1. Einsparpotential:
    $$Einsparung = \frac{2,97 \text{ kWh}}{4,71 \text{ kWh}} \approx 63\text{ Prozent} $$
 
-1. Kosteinsparung je Duschgang:
+1. Potentielle Einsparung an Heizkosten je Duschgang:
    $$Einsparung = 2,97 \text{ kWh} \times \frac{0,11 €}{\text{kWh}} = 0,33 \text{ €}$$
-
 
 ## Ergebnis
 
