@@ -20,37 +20,37 @@ Stellen wir uns vor, ihr schließt vor dem Duschen den Badewannenstöpsel und la
 
 1. Benötigte Wärmeenergie für Duschwasser
 
-   \( Q = m \cdot c \cdot \Delta T = 150\, \text{kg} \cdot 4.186\, \text{kJ/kg}^\circ\text{C} \cdot (37^\circ\text{C} - 10^\circ\text{C}) \approx 16.953\, \text{kJ} \)
+   $$ Q = m \cdot c \cdot \Delta T = 150\, \text{ kg} \cdot 4,186\, \text{ kJ/kg}^\circ\text{C} \cdot (37^\circ\text{C} - 10^\circ\text{C}) \approx 16.953\, \text{ kJ} $$
 
-      <!-- Leerzeile -->
+   <!-- Leerzeile -->
 
 2. Umrechnung in kWh:
 
-   \( E\_{\text{kWh}} = \frac{16.953\, \text{kJ}}{3.6 \times 10^6} \approx 4.71\, \text{kWh} \)
+   $$ E\_{\text{kWh}} = \frac{16.953\, \text{ kJ}}{3.6 \times 10^6} \approx 4.71\, \text{ kWh} $$
 
    <!-- Leerzeile -->
 
 3. Abgabe Wärmeenergie an Umgebung:
 
-   \( Q = m \cdot c \cdot \Delta T = 150\, \text{kg} \cdot 4.186\, \text{kJ/kg}^\circ\text{C} \cdot 17^\circ\text{C} \approx 10.656\, \text{kJ} \)
+   $$ Q = m \cdot c \cdot \Delta T = 150\, \text{ kg} \cdot 4,186\, \text{ kJ/kg}^\circ\text{C} \cdot 17^\circ\text{C} \approx 10.656\, \text{ kJ} $$
 
    <!-- Leerzeile -->
 
 4. Umrechnung in kWh:
 
-   \( E\_{\text{kWh}} = \frac{10.656\, \text{kJ}}{3.6 \times 10^6} \approx 2.97\, \text{kWh} \)
+   $$ E\_{\text{kWh}} = \frac{10.656\, \text{ kJ}}{3.6 \times 10^6} \approx 2.97\, \text{ kWh} $$
 
    <!-- Leerzeile -->
 
 5. Berechnung der Einsparung:
 
-   \( \text{Einsparung} = \left( \frac{2.97}{4.71} \right) \times 100 \approx 63\% \)
+   $$ \text{Einsparung} = \left( \frac{2.97}{4.71} \right) \times 100 \approx 63 \text{ \%} $$
 
    <!-- Leerzeile -->
 
 6. Kostenberechnung:
 
-   \( Kosten = 2.97\, \text{kWh} \times \frac{0,11\, €}{\text{kWh}} \approx 0,33\, € \)
+   $$ Kosten = 2.97\, \text{kWh} \times \frac{0,11\, €}{\text{kWh}} \approx 0,33 \text{ €} $$
 
    <!-- Leerzeile -->
 
