@@ -36,35 +36,11 @@ Durch das Abkühlen des gesammelten Duschwassers übertragen wir rechnerisch ein
 
 ## Abkühldauer und Luftfeuchtigkeit
 
-Für eine gewisse Praxistauglichkeit stellt sich mir noch die Frage in welcher Zeit das Duschwasser abkühlt und welchen Einfluss das Speichern des Duschwassers auf die Raumluftfeuchte hat. Das ist nicht ganz leicht zu beantworten, da vorraussichtlich bereits das eigentliche Duschen zu einer signifikaten Steigerung der Raumluftfeuchte führt. Ferner ist die rechnerische Ermittlung der Abkühldauer mangels präzisem k-Faktor zu ungenau, weswegen ich ein Experiment zur Beantwortung der Frage durchgeführt habe.
+Für eine gewisse Praxistauglichkeit stellt sich mir noch die Frage in welcher Zeit das Duschwasser abkühlt und welchen Einfluss das Speichern des Duschwassers auf die Raumluftfeuchte hat. Das ist nicht ganz leicht zu beantworten, da vorraussichtlich bereits das eigentliche Duschen zu einer signifikaten Steigerung der Raumluftfeuchte führt. Ferner ist die rechnerische Ermittlung der Abkühldauer mangels präzisem k-Faktor zu ungenau, weswegen ein Experiment zur Beantwortung der Frage durchzuführen ist.
 
 ## Experiment
 
-Um die Veränderung von Wasser-/Lufttemperatur und Raumluftfeuchte über der Zeit zu Messen, verwenden wir zwei baugleiche Temperatur- und einen Feuchtigkeitssensor. Die absolute Messgenauigkeit der Sensoren kann vernachlässt werden, da für das Experiment primär die relative Änderungen von Bedeutung ist. Wer sich für den genauen Hardwareaufbau interessiert, kann diesen [hier](/HARDWARE.md) einsehen. Die Auswirkung der Aufstauung wird über die Differenzbetrachtung zweier Versuche untersucht. Ein Versuch für den typischen Duschvorgang und ein Versuch mit Wasseranstauung. Die Messung läuft so lange, bis die Messwerte der Ausgangssituation vor dem Duschen entsprechen. Die zwei Versuche werden an unterschiedlichen Tagen durchgeführt um sicherzustellen, dass die Wände ihre normalen Temperatur- und Feuchtigkeitswerte erreicht haben.
-
-### Versuchsaufbau
-
-- Mischbatterie auf maximalen Volumenstrom und maximaler Temperatur eingestellt
-- PT100 zur Wassertemperaturbestimmung in Badewanne in kleinem Kunststoffgefäß zum anstauen des Wassers beim regulären Duschen
-- PT100 zur Raumtemperaturbestimmung massearm an stativ in Raummitte
-- DHT22 ebenfalls in Raummitte
-- Vergleichbare Außen-/ und Umgebungstemperatur sowie Luftfeuchte bei beiden Versuchen
-
-Folgt...
-![Titel](images/setup.jpg)
-
-### Messfehler
-
-Das Experiment wird in einem innenliegendes Badezimmer mit aktiver Lüftung durchgeführt. Das bedeutet, dass ich die durch den Duschvorgang entstandene Luftfeuchtigkeit nicht durch ein Stoßlüften abbauen kann. Hierdurch wird der Einfluss des aufgestauten Wassers auf die Gesamtluftfeuchte innerhalb der Messauflösung vermutlich schwer zu beurteilen. Des Weiteren handelt es sich nicht um ein wissenschaftliches Experiment mit reproduzierbaren und präzisen Umgebungsbedingungen. Dies sollte bei der Bewertung der Ergebnisse berücksichtigt werden.
-
-### Ergebnis
-
-Folgt...
-![Titel](images/data.png)
-
-## Fazit und eigene Meinung
-
-Folgt
+Aktuell bereite ich die Durchführung einer Vergleichsmessreihe durch, um eine Abkühldauer und Feuchtigkeitszunahme in meinem eigenen Badezimmer zu testen. 
 
 ## Social Media Bild
 
