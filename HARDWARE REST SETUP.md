@@ -1,8 +1,4 @@
-# Systemaufbau
-
-Da es für bestimmte Experimente sinnvoll sein kann, die Badezimmertür zu schließen, habe ich die Messung von der Datenspeicherung und Visualisierung getrennt. Somit können die Sensoren im Badezimmer verbleiben, während die Messung von einem dezentralen Computer überwacht werden kann.
-
-## Verwendete Bauteile
+# Verwendete Bauteile
 
 | Bauteil                         | Stück | Bezeichnung         | Kosten | Datenblatt                                                                                |
 | ------------------------------- | ----- | ------------------- | ------ | ----------------------------------------------------------------------------------------- |
@@ -29,16 +25,14 @@ Da es für bestimmte Experimente sinnvoll sein kann, die Badezimmertür zu schli
 
 - Repository klonen `git clone https://github.com/mgiesen/Bathtub-Heat-Preservation.git`
 - Beliebige IDE für Arduino und ESP8266 Upload voreberiten
-- Secrets Datei anlegen `mcu/secrets.h` und WLAN Zugangsdaten eingeben
+- Secrets Datei anlegen `rest_sensor/secrets.h` und WLAN Zugangsdaten eingeben
 
 ```cpp
-{
-    const char *ssid = "xxxx";
-    const char *password = "xxxxx";
-}
+const char *ssid = "xxxx";
+const char *password = "xxxxx";
 ```
 
-- Quellcode auf Microcontroller aus mcu-Ordner hochladen
+- Quellcode auf Microcontroller hochladen `rest_sensor.ino`
 - NodeJS und npm installieren
 - Erforderliche Pakete installieren `npm install`
 - Server Skript ausführen `node server.js`
