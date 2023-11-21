@@ -20,20 +20,3 @@
 | IC01         | Raummitte        | Temperatur und Luftfeuchtigkeit | °C und % |
 | IC02         | Wasser Badewanne | Temperatur                      | °C       |
 | IC03         | Raummitte        | Temperatur                      | °C       |
-
-## Installation
-
-- Repository klonen `git clone https://github.com/mgiesen/Bathtub-Heat-Preservation.git`
-- Beliebige IDE für Arduino und ESP8266 Upload voreberiten
-- Secrets Datei anlegen `rest_sensor/secrets.h` und WLAN Zugangsdaten eingeben
-
-```cpp
-const char *ssid = "xxxx";
-const char *password = "xxxxx";
-```
-
-- Quellcode auf Microcontroller hochladen `rest_sensor.ino`
-- NodeJS und npm installieren
-- Erforderliche Pakete installieren `npm install`
-- Server Skript ausführen `node server.js`
-- Beliebigen Browser nutzen, um Webinterface zu öffnen `http://localhost:3000`
