@@ -1,5 +1,5 @@
 #include <ESP8266WiFi.h>
-#include <ESP8266WebServer.h> 
+#include <ESP8266WebServer.h>
 #include <ESP8266mDNS.h>
 
 #include <Wire.h>
@@ -7,6 +7,12 @@
 #include <Adafruit_BME280.h>
 #include <OneWire.h>
 #include <DallasTemperature.h>
+
+/*
+  Definition erfolgt in der "secrets.h"
+  const char *ssid;
+  const char *password;
+*/
 
 #include "secrets.h"
 
@@ -47,9 +53,12 @@ void setup()
 
     Serial.println("Mit WLAN verbunden");
 
-    if (!MDNS.begin("showersensor")) {
+    if (!MDNS.begin("showersensor"))
+    {
         Serial.println("Fehler beim Einrichten des mDNS-Responders!");
-    } else {
+    }
+    else
+    {
         Serial.println("mDNS responder gestartet");
     }
 
