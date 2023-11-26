@@ -1,6 +1,6 @@
 # Sparen durch Auffangen des Duschwassers
 
-Glaubt ihr, dass ihr im Winter ca. 60 % eurer Duschkosten einsparen könnt, einfach indem ihr euren Badewannen-Stöpsel vor dem Duschen einsteckt? Klingt gewagt, nicht wahr? Ich möchte die Aussage mit diesem Text etwas genauer untersuchen.
+Ihr könnt in den kalten Wintermonaten 60 % eurer Duschkosten einsparen, ohne die Temperatur oder Wassermenge zu reduzieren. Alles, was man tun muss, ist das Wasser aufstauen. Klingt gewagt, nicht wahr? Ich möchte die Aussage mit diesem Text etwas genauer untersuchen.
 
 Neulich beim Duschen habe ich mich gefragt, wie viel Wärmeenergie eigentlich über das Wasser zwischen meinen Füßen im Abfluss verschwindet und unnötigerweise das Abwassersystem erwärmt. Könnte man den Nutzen des warmen Wassers nicht weiter erhöhen?
 
@@ -56,16 +56,27 @@ Die Vergleichsmessreihe hat daher nicht den Anspruch eines korrekt durchgeführt
 
 Ich verwende zwei WLAN-fähige Mikrokontroller mit jeweils einem baugleichen Temperatursensor. Am entfernten Mikrokontroller ist zusätzlich ein Luftfeuchtigkeitssensor angeschlossen. Beide Mikrokontroller schreiben ihre Messwerte über Netzwerkprotokolle in eine Zeitreihendatenbank auf meinem Heimserver. Die Visualisierung erfolgt über Grafana.
 
+Umgebungsbedingungen:
+
+- Badezimmer Tür geöffnet
+- Raumlüftung eingeschaltet
+- Mischbatterie auf volle Temperatur und vollen Volumenstrom eingestellt
+- Befüllungsdauer 10 Minuten
+
 ![Bild zeigt Versuchsaufbau](images/versuchsaufbau.jpg)
 
-### Messung des normalen Duschgangs
+## Messergebnisse während eines normalen Duschgangs
+
+![Bild zeigt erstes Experiment](measurements/experiment1.jpg)
+
+## Messergebnisse während eines normalen Duschganges mit Anstauung des Wassers
 
 Experiment folgt...
 
-### Messung des Duschgangs mit Wasseranstauung
+## Interpretation der Daten
 
-Experiment folgt...
+Folgt...
 
-## Social Media Bild
+## Social Media Post
 
 ![Bild zeigt Social Media Banner](images/titelbild.webp)
