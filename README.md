@@ -71,7 +71,7 @@ Umgebungsbedingungen:
 
 ![Bild Experiment 1](readme/experiment_1.jpg)
 
-## Messergebnisse während eines normalen Duschganges mit Anstauung des Wassers
+## Messergebnisse während eines Duschganges mit Anstauung des Wassers
 
 ![Bild Experiment 2](readme/experiment_2.jpg)
 
