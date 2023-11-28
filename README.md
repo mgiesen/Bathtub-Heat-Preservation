@@ -1,10 +1,12 @@
 # Sparen durch Auffangen des Duschwassers
 
-Ihr könnt in den kalten Wintermonaten 60 % eurer Duschkosten einsparen, ohne die Temperatur oder Wassermenge zu reduzieren. Alles, was man tun muss, ist das Wasser aufstauen. Klingt gewagt, nicht wahr? Ich möchte die Aussage mit diesem Text etwas genauer untersuchen.
+Ihr könnt in den kalten Wintermonaten 60 % eurer Duschkosten einsparen, ohne die Temperatur oder Wassermenge zu reduzieren. Klingt gewagt, nicht wahr? Ich möchte die Aussage mit diesem Text etwas genauer untersuchen.
 
-Neulich beim Duschen habe ich mich gefragt, wie viel Wärmeenergie eigentlich über das Wasser zwischen meinen Füßen im Abfluss verschwindet und unnötigerweise das Abwassersystem erwärmt. Könnte man den Nutzen des warmen Wassers nicht weiter erhöhen?
+Neulich beim Duschen habe ich mich gefragt, wie viel Wärmeenergie eigentlich über das Wasser zwischen meinen Füßen im Abfluss verschwindet und unnötigerweise das Abwassersystem erwärmt. Könnte man den Nutzen des warmen Wassers nicht weiter erhöhen? Rund um dieses Thema gibt es bereits verschiedene kommerzielle Lösungen, aber ich denke es gibt einen praktisch kostenlosen Ansatz ohne signifikante Wirkungsgradverluste.
 
-Stellen wir uns vor, ihr schließt vor dem Duschen den Badewannenstöpsel und lasst das Wasser erst dann ab, wenn es vollständig abgekühlt ist. Das wäre natürlich nur im Winter vorteilhaft, aber die Abkühlung erfolgt immerhin durch einen Wärmeübertrag an die Umgebung. Demnach heizt das Duschwasser zusätzlich die Raumluft, wodurch Heizkosten gesenkt werden können. Schauen wir uns hierzu eine Überschlagsrechnung an.
+Stellen wir uns vor, ihr schließt vor dem Duschen den Badewannenstöpsel und lasst das Wasser erst dann ab, wenn es vollständig abgekühlt ist. Das wäre natürlich nur im Winter vorteilhaft, aber die Abkühlung erfolgt immerhin durch einen Wärmeübertrag an die Umgebung. Demnach heizt das Duschwasser zusätzlich die Raumluft, wodurch Heizkosten gesenkt werden können. Der vom aufgestauten Duschewasser abgegebene Wärmestrom reduziert die erforderliche Heizleistung der Badezimmerheizung und je nach Wärmemenge entsprechend auch der Wohnraumheizung. Schlussendlich entspricht das Badewasser einem gedachten Heizkörper. Wie viel diese zusätzliche Wärmequelle bringt, habe ich mir mit der folgenden Rechnung angeschaut.
+
+![Bild Versuchsaufbau](readme/systemgrenzen.jpg)
 
 ## Annahmen
 
@@ -24,7 +26,7 @@ Stellen wir uns vor, ihr schließt vor dem Duschen den Badewannenstöpsel und la
 1. Abgabe Wärmeenergie an Umgebung:
    $$Q = m \times c \times ΔT = 150 \text{ kg} \times 4186 \text{ J/kg°C} \times (37\text{ °C} - 20\text{ °C}) \approx 10.674 \text{ kJ} \approx 2,97 \text{ kWh}$$
 
-1. Einsparpotential:
+1. Energie Einsparpotential:
    $$Einsparung = \frac{2,97 \text{ kWh}}{4,71 \text{ kWh}} \approx 63\text{ Prozent} $$
 
 1. Potentielle Einsparung an Heizkosten je Duschgang:
@@ -32,7 +34,7 @@ Stellen wir uns vor, ihr schließt vor dem Duschen den Badewannenstöpsel und la
 
 ## Ergebnis
 
-Durch das Abkühlen des aufgestauten Duschwassers übertragen wir rechnerisch eine Wärmeenergie von ca. 3 kWh bzw. 63 % unserer aufgewendeten Wärmeenergie an die Umgebung. Demnach ließen sich in der kalten Jahreszeit potentiell 0,33 € Heizkosten je Duschgang einsparen. Statistisch betrachtet heizen die meisten Menschen zwischen Oktober und April. Angenommen ein Vierpersonenhaushalt duscht in der Zeitspanne jeweils 20 Tage pro Monat entspricht dies einer potentiellen Einsparung von 158,40 €.
+Durch das Abkühlen des aufgestauten Duschwassers übertragen wir rechnerisch eine Wärmeenergie von ca. 3 kWh bzw. 63 % unserer, zum Duschen aufgewendeten, Wärmeenergie an die Umgebung. Demnach ließen sich in der kalten Jahreszeit potentiell 0,33 € Heizkosten je Duschgang einsparen. Statistisch betrachtet heizen die meisten Menschen zwischen Oktober und April. Angenommen ein Vierpersonenhaushalt duscht in der Zeitspanne jeweils 20 Tage pro Monat entspricht dies einer potentiellen Einsparung von 158,40 €.
 
 ## Abkühldauer und Luftfeuchtigkeit
 
@@ -48,13 +50,13 @@ Bei diesem Vorgehen sind mehrere Fehlerquellen erwartbar. Beispiel:
 
 - Variation im Volumenstrom und der Zulauftemperatur
 - Luftdruckunterschiede führen zu unterschiedlich effektiver Lüftung
-- Potential der Umgebung Feuchtigkeit zu speichern
+- Potential der Umgebung Feuchtigkeit zu speichern variiert
 
-Die Vergleichsmessreihe hat daher nicht den Anspruch eines korrekt durchgeführten Experimentes, aber ich erhoffe mir aus den Messwerte dennoch eine Tendenz. Wir führen die Messung so lange durch, bis sich die Wassertemperatur der Umgebungstemperatur angeglichen hat.
+Die Vergleichsmessreihe hat daher nicht den Anspruch eines korrekt durchgeführten Experimentes, aber ich erhoffe mir aus den Messwerten dennoch eine Tendenzielle Antwort auf die initiale Frage.
 
 ### Versuchsaufbau
 
-Ich verwende zwei WLAN-fähige Mikrokontroller mit jeweils einem baugleichen Temperatursensor. Am entfernten Mikrokontroller ist zusätzlich ein Luftfeuchtigkeitssensor angeschlossen. Beide Mikrokontroller schreiben ihre Messwerte über Netzwerkprotokolle in eine Zeitreihendatenbank auf meinem Heimserver. Die Visualisierung erfolgt über Grafana.
+Ich verwende zwei WLAN-fähige Mikrokontroller mit jeweils einem baugleichen Temperatursensor. Am entfernten Mikrokontroller ist zusätzlich ein Luftfeuchtigkeitssensor angeschlossen. Beide Mikrokontroller schreiben ihre Messwerte über Netzwerkprotokolle in eine Zeitreihendatenbank auf meinem Heimserver. Die Visualisierung erfolgt über Grafana. Wer an dem Quellcode interessiert ist, findet den Programmcode im Dateiordner `evaluation`.
 
 Umgebungsbedingungen:
 
@@ -63,20 +65,35 @@ Umgebungsbedingungen:
 - Mischbatterie auf volle Temperatur und vollen Volumenstrom eingestellt
 - Befüllungsdauer 10 Minuten
 
-![Bild zeigt Versuchsaufbau](images/versuchsaufbau.jpg)
+![Bild Versuchsaufbau](readme/versuchsaufbau.jpg)
 
 ## Messergebnisse während eines normalen Duschgangs
 
-![Bild zeigt erstes Experiment](measurements/experiment1.jpg)
+![Bild Experiment 1](readme/experiment_1.jpg)
 
 ## Messergebnisse während eines normalen Duschganges mit Anstauung des Wassers
 
-Experiment folgt...
+![Bild Experiment 2](readme/experiment_2.jpg)
 
-## Interpretation der Daten
+## Fazit
 
-Folgt...
+Laut verschiedenen Quellen liegt die optimale Luftfeuchtigkeit eines Badezimmers zwischen 50-70 %. Die Vergleichsmessung zeigt einen Abfall der beim Duschen entstandenen Luffeuchte binnen weniger Minuten. Nach einer Stunde liegt die Luftfeuchte mit angestautem Wasser unterhalb von 60 %. Die Luftfeuchtigkeit lässt sich vermutlich noch weiter senken, wenn nach dem Duschen ein Stoßlüften möglich ist.
+
+Wie man an der Abkühlkruve des Wassers gut erkennen kann, erfolgt der Wärmeübertrag an die Umgebung nur langsam. Somit wäre zwar ein Abkühlungseffekt durch das Lüften weniger relevant, jedoch ist es wenig praktikabel das Duschwasser über knapp 18 Stunden abkühlen zu lassen. Aufgrund der exponentiellen Abkühlung lässt sich jedoch innerhalb von 4-5 Stunden mehr als die Hälfte der Wärmeenergie übertragen. Die Praxistauglich muss hier jeder für sich selbst bewerten.
+
+In meinem Experiment habe ich nur sauberes Wasser verwendet. Kommen Shampoo und Schmutz in den Prozess, ist davon auszugehen, dass nach dem Entleeren der Badewanne ein Abdruck auf Höhe des Wasserpegels am Wannenrand verbleibt. Dies senkt weiter den Kompfort durch den zusätzlichen Reinigungsaufwand und damit die Praxistauglichkeit.
+
+Alles in allem fande ich die Untersuchung spannend und inspirierend. Es ist erstaunlich welche Mengen an Energie in unserem Alltag noch nicht genutzt werden. Der Raum für Lösungen ist groß und muss stärker genutzt werden. Ferner hat es den Ingenieur in mir gefreut zu sehen, dass der Messwert des Temperatursensors in der Badewanne nach Entleerung des Wassers unter den Messwert der Raumlufttemperatur gefallen ist. Dies zeigt gut den Effekt der Verdunstungskälte, durch die Wasserrückstände auf der Messkopfoberfläche.
+
+## Ausblick
+
+- Potentiell größer dimensionierter Siphon könnte den Effekt praxistauglicher integrieren
+- Nutzung in Einrichtungen wie Schwimmbäder, zur Beckenheizung - Stichwort Wärmetauscher
+- Im Gebäude verbaute Wasserspeicher
+- ...
+
+Ich lade herzlich dazu ein, die Gedanken fortzuführen und bedanke mich für das Lesen!
 
 ## Social Media Post
 
-![Bild zeigt Social Media Banner](images/titelbild.webp)
+![Bild zeigt Social Media Banner](readme/titelbild.webp)
