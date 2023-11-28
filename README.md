@@ -77,13 +77,13 @@ Umgebungsbedingungen:
 
 ## Fazit
 
-Laut verschiedenen Quellen liegt die optimale Luftfeuchtigkeit eines Badezimmers zwischen 50-70 %. Die Vergleichsmessung zeigt einen Abfall der beim Duschen entstandenen Luffeuchte binnen weniger Minuten. Nach einer Stunde liegt die Luftfeuchte mit angestautem Wasser unterhalb von 60 %. Die Luftfeuchtigkeit lässt sich vermutlich noch weiter senken, wenn nach dem Duschen ein Stoßlüften möglich ist.
+Laut verschiedenen Quellen liegt die optimale Luftfeuchtigkeit eines Badezimmers zwischen 50-70%. Die Vergleichsmessung zeigt einen Abfall der beim Duschen entstandenen Luftfeuchte binnen weniger Minuten. Nach einer Stunde liegt die Luftfeuchte mit angestautem Wasser unterhalb von 60%. Die Luftfeuchtigkeit lässt sich vermutlich noch weiter senken, wenn nach dem Duschen ein Stoßlüften möglich ist.
 
-Wie man an der Abkühlkruve des Wassers gut erkennen kann, erfolgt der Wärmeübertrag an die Umgebung nur langsam. Somit wäre zwar ein Abkühlungseffekt durch das Lüften weniger relevant, jedoch ist es wenig praktikabel das Duschwasser über knapp 18 Stunden abkühlen zu lassen. Aufgrund der exponentiellen Abkühlung lässt sich jedoch innerhalb von 4-5 Stunden mehr als die Hälfte der Wärmeenergie übertragen. Die Praxistauglich muss hier jeder für sich selbst bewerten.
+Wie man an der Abkühlkurve des Wassers gut erkennen kann, erfolgt der Wärmeübertrag an die Umgebung nur langsam. Somit wäre zwar ein Abkühlungseffekt durch das Lüften weniger relevant, jedoch ist es wenig praktikabel, das Duschwasser über knapp 18 Stunden abkühlen zu lassen. Aufgrund der exponentiellen Abkühlung lässt sich jedoch innerhalb von 4-5 Stunden mehr als die Hälfte der Wärmeenergie übertragen. Die Praxistauglichkeit muss hier jeder für sich selbst bewerten.
 
-In meinem Experiment habe ich nur sauberes Wasser verwendet. Kommen Shampoo und Schmutz in den Prozess, ist davon auszugehen, dass nach dem Entleeren der Badewanne ein Abdruck auf Höhe des Wasserpegels am Wannenrand verbleibt. Dies senkt weiter den Kompfort durch den zusätzlichen Reinigungsaufwand und damit die Praxistauglichkeit.
+In meinem Experiment habe ich nur sauberes Wasser verwendet. Kommt Shampoo und Schmutz in den Prozess, ist davon auszugehen, dass nach dem Entleeren der Badewanne ein Abdruck auf Höhe des Wasserpegels am Wannenrand verbleibt. Dies senkt weiter den Komfort durch den zusätzlichen Reinigungsaufwand und damit die Praxistauglichkeit.
 
-Alles in allem fande ich die Untersuchung spannend und inspirierend. Es ist erstaunlich welche Mengen an Energie in unserem Alltag noch nicht genutzt werden. Der Raum für Lösungen ist groß und muss stärker genutzt werden. Ferner hat es den Ingenieur in mir gefreut zu sehen, dass der Messwert des Temperatursensors in der Badewanne nach Entleerung des Wassers unter den Messwert der Raumlufttemperatur gefallen ist. Dies zeigt gut den Effekt der Verdunstungskälte, durch die Wasserrückstände auf der Messkopfoberfläche.
+Alles in allem fand ich die Untersuchung spannend und inspirierend. Es ist erstaunlich, welche Mengen an Energie in unserem Alltag noch nicht genutzt werden. Der Raum für Lösungen ist groß und muss stärker genutzt werden. Ferner hat es den Ingenieur in mir gefreut zu sehen, dass der Messwert des Temperatursensors in der Badewanne nach Entleerung des Wassers unter den Messwert der Raumlufttemperatur gefallen ist. Dies zeigt gut den Effekt der Verdunstungskälte, durch die Wasserrückstände auf der Messkopfoberfläche.
 
 ## Ausblick
 
