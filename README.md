@@ -94,6 +94,14 @@ Alles in allem fand ich die Untersuchung spannend und inspirierend. Es ist ersta
 
 Ich lade herzlich dazu ein, die Gedanken fortzuführen und bedanke mich für das Lesen!
 
+## Rechercheergebnisse zu kommerziellen Ansätzen
+
+Hier liste ich verwandte Themen auf, die ich bei meiner Recherche gefunden habe. Ich freue mich über Ergänzungen aus der Community!
+
+- [Der Warmduscher](https://derwarmduscher.de/)
+- [Kreislaufdusche OAS](https://www.bau-welt.de/innenausbau/bad/dusche-und-badewanne/oas-kreislaufdusche.html)
+- [SOPHIE smart shower](https://www.linkedin.com/company/sophie-smart-shower/about/)
+
 ## Social Media Post
 
 ![Bild zeigt Social Media Banner](readme/titelbild.webp)
